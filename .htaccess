@@ -1,0 +1,6 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+# Regles de reecriture d'url
+# RewriteRule [URL VOULUE] [URL ORIGINALLE]
+RewriteRule ^([a-z0-9]+)$ /index.php?action=$1 [L]
