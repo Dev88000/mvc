@@ -19,11 +19,11 @@
                         <nav class="nav flex-column mt-5">
                             <a class="nav-link active m-3" href="index.php?action=accueil"><img src="../Public/assets/icons8-accueil-100.png" class="img-fluid w-25" alt="Responsive image"></a>
                             <a class="nav-link m-3" href="index.php?action=avis"><img src="../Public/assets/icons8-avis-100.png" class="img-fluid w-25" alt="Responsive image"></a>
-                            <a class="nav-link m-3"" href="index.php?action=portfolio"><img src="../Public/assets/icons8-portefeuille-100.png" class="img-fluid w-25" alt="Responsive image"></a>
-                            <a class="nav-link m-3"" href="index.php?action=blog"><img src="../Public/assets/icons8-blog-100.png" class="img-fluid w-25" alt="Responsive image"></a>
-                            <a class="nav-link m-3"" href="index.php?action=inscription"><img src="../Public/assets/icons8-inscription-100.png" class="img-fluid w-25" alt="Responsive image"></a>
-                            <a class="nav-link m-3"" href="index.php?action=connexion"><img src="../Public/assets/icons8-connect-100.png" class="img-fluid w-25" alt="Responsive image"></a>
-                            <a class="nav-link m-3"" href="index.php?action=getUsersDeconnexion"><img src="../Public/assets/icons8-deconnexion-100.png" class="img-fluid w-25" alt="Responsive image"></a>
+                            <a class="nav-link m-3" href="index.php?action=portfolio"><img src="../Public/assets/icons8-portefeuille-100.png" class="img-fluid w-25" alt="Responsive image"></a>
+                            <a class="nav-link m-3" href="index.php?action=blog"><img src="../Public/assets/icons8-blog-100.png" class="img-fluid w-25" alt="Responsive image"></a>
+                            <!-- <a class="nav-link m-3" href="index.php?action=inscription"><img src="../Public/assets/icons8-inscription-100.png" class="img-fluid w-25" alt="Responsive image"></a> -->
+                            <!-- <a class="nav-link m-3" href="index.php?action=connexion"><img src="../Public/assets/icons8-connect-100.png" class="img-fluid w-25" alt="Responsive image"></a> -->
+                            <a class="nav-link m-3" href="index.php?action=getUsersDeconnexion"><img src="../Public/assets/icons8-deconnexion-100.png" class="img-fluid w-25" alt="Responsive image"></a>
                         </nav>
                         <footer class="text-white m-4">
                             <p>© 2023 - Tous droits réservés</p>
@@ -39,6 +39,7 @@
                 </div>
             </div>
         </div> 
-        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="./Public/js/bootstrap.bundle.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI/t1qRuexa6MHBX2sOPqFCxKtYO5GCZHCo/Q/CU=" crossorigin="anonymous"></script>
     </body>
 </html>

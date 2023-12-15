@@ -67,22 +67,21 @@
             $user = $req_U_C->fetch();
             
             // while ($user = $req_U_C->fetch()) {
-                if (password_verify($password, $user['password'])) {
-                    $_SESSION['connect'] = 1;
-                    $_SESSION['email'] = $user['email'];
-                    $_SESSION['nom'] = $user['nom'];
-                    $_SESSION['prenom'] = $user['prenom'];
-                    $_SESSION['id'] = $user['id'];
-                    header('location: index.php?success=1');
-                    exit();
+            if (password_verify($password, $user['password'])) {
+                $_SESSION['connect'] = 1;
+                $_SESSION['email'] = $user['email'];
+                $_SESSION['nom'] = $user['nom'];
+                $_SESSION['prenom'] = $user['prenom'];
+                $_SESSION['id'] = $user['id'];
+                header('location: index.php?success=1');
+                exit();
                     
-                }
-                else {
-                    header('location: index.php?action=connexion&error=1&message=Impossible de vous identifier correctement.');
-                    exit();
-                }
             }
-        // }
+            else {
+                header('location: index.php?action=accueil');
+                exit();
+            }
+        }
     }
 
     function getUsersDeconnexion() {
