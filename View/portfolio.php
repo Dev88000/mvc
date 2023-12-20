@@ -12,8 +12,7 @@
 
 
 
-
-
+    
     <div class="card w-25 bg-success">
         <img src="../Public/assets/LogoDev.png" class="card-img-top" alt="...">
         <div class="card-body bg-info">
