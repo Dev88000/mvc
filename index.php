@@ -7,9 +7,9 @@
             if ($_GET['action'] == 'accueil') {
                 home();
             }
-            elseif ($_GET['action'] == 'avis') {
-                avis();
-            }
+            // elseif ($_GET['action'] == 'avis') {
+            //     avis();
+            // }
             elseif ($_GET['action'] == 'blog') {
                 blog();
             }

@@ -4,7 +4,8 @@
     ob_start();
 ?>
 <section>
-    <h1 class="m-4 text-white">Bienvenue sur mon site</h1>
+    <h1 class="m-4 text-white">Bienvenue sur mon blog</h1>
+ 
 </section>
 <?php
     $content = ob_get_clean();

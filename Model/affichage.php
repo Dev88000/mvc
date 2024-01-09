@@ -1,5 +1,6 @@
 <?php
     require_once 'Model/bdd.php';
+    
     // affichage des utilisateurs
     function getUsers() {
         $req_U = getBdd()->prepare('SELECT * FROM users');
@@ -9,11 +10,11 @@
         return $users;
     }
 
-    // affichage des articles
-    function getJoin_A_U() {
-        $req_A_U = getBdd()->query('SELECT nom, prenom, articles, note, date_creation FROM avis INNER JOIN users ON users.id = avis.id_users');
-        return $req_A_U;
-    }
+    // affichage des avis
+    // function getJoin_A_U() {
+    //     $req_A_U = getBdd()->query('SELECT nom, prenom, articles, note, date_creation FROM avis INNER JOIN users ON users.id = avis.id_users');
+    //     return $req_A_U;
+    // }
 
     function getUsersMail() {
         $req_U_M = getBdd()->prepare('SELECT COUNT(*) AS numberEmail FROM users WHERE email = ?');

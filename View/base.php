@@ -18,12 +18,8 @@
                         <img src="../Public/assets/Tony.jpg" class="img-fluid w-75 rounded-2" alt="Responsive image">
                         <nav class="nav flex-column mt-5">
                             <a class="nav-link active m-3" href="index.php?action=accueil"><img src="../Public/assets/icons8-accueil-100.png" class="img-fluid w-25" alt="Responsive image"></a>
-                            <a class="nav-link m-3" href="index.php?action=avis"><img src="../Public/assets/icons8-avis-100.png" class="img-fluid w-25" alt="Responsive image"></a>
                             <a class="nav-link m-3" href="index.php?action=portfolio"><img src="../Public/assets/icons8-portefeuille-100.png" class="img-fluid w-25" alt="Responsive image"></a>
                             <a class="nav-link m-3" href="index.php?action=blog"><img src="../Public/assets/icons8-blog-100.png" class="img-fluid w-25" alt="Responsive image"></a>
-                            <!-- <a class="nav-link m-3" href="index.php?action=inscription"><img src="../Public/assets/icons8-inscription-100.png" class="img-fluid w-25" alt="Responsive image"></a> -->
-                            
-                            <!-- <a class="nav-link m-3" href="index.php?action=connexion"><img src="../Public/assets/icons8-connect-100.png" class="img-fluid w-25" alt="Responsive image"></a> -->
                             <a class="nav-link m-3" href="index.php?action=getUsersDeconnexion"><img src="../Public/assets/icons8-deconnexion-100.png" class="img-fluid w-25" alt="Responsive image"></a>
                         </nav>
                         <footer class="text-white m-4">

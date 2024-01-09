@@ -9,10 +9,10 @@
         require_once 'View/home.php';
     }
 
-    function avis() {
-        $req_A_U = getJoin_A_U(); // Tableau des avis lie aux users
-        require 'View/avis.php';
-    }
+    // function avis() {
+    //     $req_A_U = getJoin_A_U(); // Tableau des avis lie aux users
+    //     require 'View/avis.php';
+    // }
 
     function blog() {
         require 'View/blog.php';
@@ -43,7 +43,7 @@
             $password = password_hash($password, PASSWORD_DEFAULT);
 
             if (getUsersInscriptionBDD($nom, $prenom, $email, $password)){
-                header('Location: index.php?action=connexion');
+                header('Location: index.php');
                 exit();
             } else {
                 header('Location: index.php?action=inscription');
