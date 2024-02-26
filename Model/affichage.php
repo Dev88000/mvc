@@ -3,7 +3,7 @@
     
     // affichage des utilisateurs
     function getUsers() {
-        $req_U = getBdd()->prepare('SELECT * FROM users');
+        $req_U = getBdd()->prepare('SELECT * FROM creation_users');
         $req_U->execute();
         $users = $req_U->fetchAll(PDO::FETCH_ASSOC);
         $req_U->closeCursor();
@@ -17,7 +17,7 @@
     // }
 
     function getUsersMail() {
-        $req_U_M = getBdd()->prepare('SELECT COUNT(*) AS numberEmail FROM users WHERE email = ?');
+        $req_U_M = getBdd()->prepare('SELECT COUNT(*) AS numberEmail FROM creation_users WHERE email = ?');
         $req_U_M->execute([$_POST['email']]);
         
         while ($email_verification = $req_U_M->fetch()) {
@@ -36,7 +36,7 @@
 
     // creation des utilisateurs pour l'inscription
     function getUsersInscriptionBDD($nom, $prenom, $email, $password) {
-        $req_U_I = getBdd()->prepare('INSERT INTO users(nom, prenom, email, password) VALUES(:nom, :prenom, :email, :password)');
+        $req_U_I = getBdd()->prepare('INSERT INTO creation_users(nom, prenom, email, password) VALUES(:nom, :prenom, :email, :password)');
         $req_U_I->execute(['nom' => $nom, 'prenom' => $prenom,  'email' => $email, 'password' => $password]);
         $success = $req_U_I->rowCount()>0;
         $req_U_I->closeCursor();
@@ -46,7 +46,7 @@
     // affichage des utilisateurs pour la connexion
     function getUsersConnexionBDD($email, $password) {
 
-            $req_U_C = getBdd()->prepare("SELECT * FROM users WHERE email = :email AND password = :password");
+            $req_U_C = getBdd()->prepare("SELECT * FROM creation_users WHERE email = :email AND password = :password");
             $req_U_C->execute([':email' => $email, ':password' => $password]);
             $user = $req_U_C->fetch(PDO::FETCH_ASSOC);
             $req_U_C->closeCursor();

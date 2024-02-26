@@ -61,7 +61,7 @@
             $password = htmlspecialchars($_POST['password']);
 
             // On connecte l'utilisateur
-            $req_U_C = getBdd()->prepare('SELECT * FROM users WHERE email = ?');
+            $req_U_C = getBdd()->prepare('SELECT * FROM creation_users WHERE email = ?');
             $req_U_C->execute([$email]);
     
             $user = $req_U_C->fetch();
