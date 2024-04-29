@@ -4,7 +4,7 @@
     $titleMenu = 'Accueil';
     ob_start();
 ?>
-    <section>
+    <section class="">
         
     </section>
 <?php
