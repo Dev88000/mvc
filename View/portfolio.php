@@ -4,15 +4,10 @@
     ob_start();
 ?>
 <section>
-    <h1 class="m-4 text-white">Bienvenue sur mon Portfolio</h1>
-
-    
-
-
 
     
     <div class="card w-25 bg-success">
-        <img src="../Public/assets/LogoDev.png" class="card-img-top" alt="...">
+        <img src="Public/assets/LogoDev.png" class="card-img-top" alt="...">
         <div class="card-body bg-info">
             <h5 class="card-title">Premier projet</h5>
             <p class="card-text">Voici mon premier projet dans le développement web.</p>

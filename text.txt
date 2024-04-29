@@ -14,16 +14,13 @@
             <div class="row">
                 <div class="col-2">
                     <header class="vh-100 bg-dark text-center">
-                        <?php if (isset($_SESSION['prenom'])) { ?>
-                            <p class="text-white p-2">Bienvenue <?= $_SESSION['prenom']; ?> !</p>
-                        <?php } else { ?>
-                            <p class="text-white p-2"><?= $titleMenu; ?></p>
-                        <?php } ?>
+                        <p class="text-white p-4"><?= $titleMenu ?></p>
                         <img src="Public/assets/Tony.jpg" class="img-fluid w-75 rounded-2" alt="Responsive image">
                         <nav class="nav flex-column mt-5">
                             <a class="nav-link active m-3" href="index.php?action=accueil"><img src="Public/assets/icons8-accueil-100.png" class="img-fluid w-25" alt="Responsive image"></a>
                             <a class="nav-link m-3" href="index.php?action=portfolio"><img src="Public/assets/icons8-portefeuille-100.png" class="img-fluid w-25" alt="Responsive image"></a>
                             <a class="nav-link m-3" href="index.php?action=blog"><img src="Public/assets/icons8-blog-100.png" class="img-fluid w-25" alt="Responsive image"></a>
+                            <a class="nav-link m-3" href="index.php?action=getUsersDeconnexion"><img src="Public/assets/icons8-deconnexion-100.png" class="img-fluid w-25" alt="Responsive image"></a>
                         </nav>
                         <footer class="text-white m-4">
                             <p>© 2023 - Tous droits réservés</p>
@@ -34,7 +31,7 @@
                     <div class="text-end m-3">
                         <div>
                             <?php if (isset($_SESSION['prenom'])) { ?>
-                                <a href="index.php?action=getUsersDeconnexion" class="btn btn-primary">Déconnexion</a>
+                                <p class="text-white">Bonjour <?= $_SESSION['prenom'] ?></p>
                             <?php } else { ?>
                                 <p class="text-white">
                                     <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
