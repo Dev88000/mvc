@@ -80,6 +80,5 @@
             </div>
         </div> 
         <script src="./Public/js/bootstrap.bundle.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI/t1qRuexa6MHBX2sOPqFCxKtYO5GCZHCo/Q/CU=" crossorigin="anonymous"></script>
     </body>
 </html>

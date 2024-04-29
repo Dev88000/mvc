@@ -9,10 +9,10 @@
         require_once 'View/home.php';
     }
 
-    // function avis() {
-    //     $req_A_U = getJoin_A_U(); // Tableau des avis lie aux users
-    //     require 'View/avis.php';
-    // }
+    function avis() {
+        $req_A_U = getJoin_A_U(); // Tableau des avis lie aux users
+        require 'View/avis.php';
+    }
 
     function blog() {
         require 'View/blog.php';
@@ -46,7 +46,7 @@
                 header('Location: index.php');
                 exit();
             } else {
-                header('Location: index.php?action=accueil');
+                header('location: index.php?action=accueil');
                 exit();
             }
         }
@@ -61,7 +61,7 @@
             $password = htmlspecialchars($_POST['password']);
 
             // On connecte l'utilisateur
-            $req_U_C = getBdd()->prepare('SELECT * FROM creation_users WHERE email = ?');
+            $req_U_C = getBdd()->prepare('SELECT * FROM users WHERE email = ?');
             $req_U_C->execute([$email]);
     
             $user = $req_U_C->fetch();
