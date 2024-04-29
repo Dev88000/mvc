@@ -1,5 +1,5 @@
 <?php 
-    $icon = '../Public/assets/icons8-blog-100-noir.png';
+    $icon = 'Public/assets/icons8-blog-100-noir.png';
     $titleMenu = 'Blog';
     ob_start();
 ?>

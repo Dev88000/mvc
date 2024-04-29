@@ -1,5 +1,5 @@
 <?php 
-    $icon = '../Public/assets/icons8-erreur-100-noir.png';
+    $icon = 'Public/assets/icons8-erreur-100-noir.png';
     $titleMenu = 'Erreur';
     ob_start();
 ?>

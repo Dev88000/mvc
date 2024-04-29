@@ -1,6 +1,6 @@
 <?php 
     require_once './fonctions/showArray.php';
-    $icon = '../Public/assets/icons8-accueil-100-noir.png';
+    $icon = 'Public/assets/icons8-accueil-100-noir.png';
     $titleMenu = 'Accueil';
     ob_start();
 ?>

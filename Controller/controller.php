@@ -46,7 +46,7 @@
                 header('Location: index.php');
                 exit();
             } else {
-                header('Location: index.php?action=inscription');
+                header('Location: index.php?action=accueil');
                 exit();
             }
         }

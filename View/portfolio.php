@@ -1,5 +1,5 @@
 <?php 
-    $icon = '../Public/assets/icons8-portefeuille-100-noir.png';
+    $icon = 'Public/assets/icons8-portefeuille-100-noir.png';
     $titleMenu = 'Portfolio';
     ob_start();
 ?>
