@@ -5,16 +5,16 @@
     require_once 'fonctions/showArray.php';
 
     function home() {
-        $req_A = getUsers(); // Tableau des users
+        $req_U = getUsers(); // Tableau des users
         require_once 'View/home.php';
     }
 
-    function avis() {
-        $req_A_U = getJoin_A_U(); // Tableau des avis lie aux users
-        require 'View/avis.php';
+    function Article() {
+        require 'View/article.php';
     }
 
     function blog() {
+        $req_A = getAllArticles(); // Tableau des articles
         require 'View/blog.php';
     }
 
@@ -28,6 +28,24 @@
 
     function connexion() {
         require 'View/connexion.php';
+    }
+
+    function creationArticle() {
+        if (!empty($_POST['titre']) && !empty($_POST['article'])) {
+
+            $id;
+            $titre = htmlspecialchars($_POST['titre']);
+            $article = htmlspecialchars($_POST['article']);
+            $article_date;
+
+            if (creationArticleBDD($id, $titre, $article, $article_date)){
+                header('Location: index.php');
+                exit();
+            } else {
+                header('location: index.php?action=blog');
+                exit();
+            }
+        }
     }
 
     function getUsersInscription() {
@@ -51,7 +69,6 @@
             }
         }
     }
-
     
     function getUsersConnexion() {
         

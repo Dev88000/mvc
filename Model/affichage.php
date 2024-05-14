@@ -9,12 +9,25 @@
         $req_U->closeCursor();
         return $users;
     }
-
-    // affichage des avis
-    function getJoin_A_U() {
-        $req_A_U = getBdd()->query('SELECT nom, prenom, articles, note, date_creation FROM avis INNER JOIN users ON users.id = avis.id_users');
-        return $req_A_U;
+///////////////////////////////////////////////////////////////////////////////////
+    function getAllArticles() {
+        $req_A = getBdd()->prepare('SELECT * FROM article');
+        $req_A->execute();
+        $articles = $req_A->fetchAll(PDO::FETCH_ASSOC);
+        $req_A->closeCursor();
+        return $articles;
     }
+
+    function creationArticleBDD($id, $titre, $article, $article_date) {
+        $req_C_A = getBdd()->prepare('INSERT INTO article(id, titre, articles, article_date) VALUES(:id, :titre, :articles, :article_date)');
+        $req_C_A->execute(['id' => $id, 'titre' => $titre, 'articles' => $article, 'article_date' => $article_date]);
+    }
+///////////////////////////////////////////////////////////////////////////////////
+    
+    // function getJoin_A_U() {
+    //     $req_A_U = getBdd()->query('SELECT nom, titre, articles FROM article INNER JOIN users ON users.id = avis.id_users');
+    //     return $req_A_U;
+    // }
 
     function getUsersMail() {
         $req_U_M = getBdd()->prepare('SELECT COUNT(*) AS numberEmail FROM users WHERE email = ?');
