@@ -5,7 +5,7 @@
 			<input type="text" name="titre" placeholder="Votre titre" required class="form-control" aria-label="titre" aria-describedby="basic-addon2">
 		</div>	
 		<div class="input-group mb-3">
-			<textarea type="text" name="projet" placeholder="Votre article" required class="form-control" aria-label="projet" aria-describedby="basic-addon2"></textarea>
+			<textarea type="text" name="projet" placeholder="Votre projet" required class="form-control" aria-label="projet" aria-describedby="basic-addon2"></textarea>
 		</div>	
 		<button type="submit" name="creation_projet" class="btn btn-primary">Ajouter votre projet</button>
 		</form>

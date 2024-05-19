@@ -6,16 +6,17 @@
 
     function home() {
         $req_U = getUsers(); // Tableau des users
-        require_once 'View/home.php';
+        $req_P = getAllProjet(); // Tableau des projets
+        $req_A = getAllAvis(); // Tableau des avis
+        require 'View/home.php';
     }
 
-    function Article() {
-        require 'View/article.php';
+    function Avis() {
+        require 'View/avis.php';
     }
 
-    function blog() {
-        $req_A = getAllArticles(); // Tableau des articles
-        require 'View/blog.php';
+    function Projet() {
+        require 'View/projet.php';
     }
 
     function portfolio() {
@@ -30,19 +31,35 @@
         require 'View/connexion.php';
     }
 
-    function creationArticle() {
-        if (!empty($_POST['titre']) && !empty($_POST['article'])) {
+    function creationProjet() {
+        if (!empty($_POST['titre']) && !empty($_POST['projet'])) {
 
             $id;
             $titre = htmlspecialchars($_POST['titre']);
-            $article = htmlspecialchars($_POST['article']);
-            $article_date;
+            $projet = htmlspecialchars($_POST['projet']);
 
-            if (creationArticleBDD($id, $titre, $article, $article_date)){
+            if (creationProjetBDD($id, $titre, $projet)){
                 header('Location: index.php');
                 exit();
             } else {
-                header('location: index.php?action=blog');
+                header('location: index.php?action=accueil');
+                exit();
+            }
+        }
+    }
+
+    function creationAvis() {
+        if (!empty($_POST['titre']) && !empty($_POST['avis'])) {
+
+            $id;
+            $titre = htmlspecialchars($_POST['titre']);
+            $avis = htmlspecialchars($_POST['avis']);
+
+            if (creationAvisBDD($id, $titre, $avis)){
+                header('Location: index.php');
+                exit();
+            } else {
+                header('location: index.php?action=accueil');
                 exit();
             }
         }

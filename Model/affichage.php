@@ -9,25 +9,35 @@
         $req_U->closeCursor();
         return $users;
     }
+
 ///////////////////////////////////////////////////////////////////////////////////
-    function getAllArticles() {
-        $req_A = getBdd()->prepare('SELECT * FROM article');
-        $req_A->execute();
-        $articles = $req_A->fetchAll(PDO::FETCH_ASSOC);
-        $req_A->closeCursor();
-        return $articles;
+    function getAllProjet() {
+        $req_P = getBdd()->prepare('SELECT * FROM projet');
+        $req_P->execute();
+        $projet = $req_P->fetchAll(PDO::FETCH_ASSOC);
+        $req_P->closeCursor();
+        return $projet;
     }
 
-    function creationArticleBDD($id, $titre, $article, $article_date) {
-        $req_C_A = getBdd()->prepare('INSERT INTO article(id, titre, articles, article_date) VALUES(:id, :titre, :articles, :article_date)');
-        $req_C_A->execute(['id' => $id, 'titre' => $titre, 'articles' => $article, 'article_date' => $article_date]);
+    function creationProjetBDD($id, $titre, $projet) {
+        $req_C_P = getBdd()->prepare('INSERT INTO projet(id, titre, projet) VALUES(:id, :titre, :projet)');
+        $req_C_P->execute(['id' => $id, 'titre' => $titre, 'projet' => $projet]);
     }
 ///////////////////////////////////////////////////////////////////////////////////
-    
-    // function getJoin_A_U() {
-    //     $req_A_U = getBdd()->query('SELECT nom, titre, articles FROM article INNER JOIN users ON users.id = avis.id_users');
-    //     return $req_A_U;
-    // }
+///////////////////////////////////////////////////////////////////////////////////
+    function getAllAvis() {
+        $req_A = getBdd()->prepare('SELECT * FROM avis');
+        $req_A->execute();
+        $avis = $req_A->fetchAll(PDO::FETCH_ASSOC);
+        $req_A->closeCursor();
+        return $avis;
+    }
+
+    function creationAvisBDD($id, $titre, $avis) {
+        $req_C_A = getBdd()->prepare('INSERT INTO avis(id, titre, avis) VALUES(:id, :titre, :avis)');
+        $req_C_A->execute(['id' => $id, 'titre' => $titre, 'avis' => $avis]);
+    }
+///////////////////////////////////////////////////////////////////////////////////
 
     function getUsersMail() {
         $req_U_M = getBdd()->prepare('SELECT COUNT(*) AS numberEmail FROM users WHERE email = ?');
