@@ -7,14 +7,14 @@
             if ($_GET['action'] == 'accueil') {
                 home();
             }
-            elseif ($_GET['action'] == 'avis') {
-                avis();
+            elseif ($_GET['action'] == 'creationProjet') {
+                creationProjet();
             }
-            elseif ($_GET['action'] == 'blog') {
-                blog();
+            elseif ($_GET['action'] == 'creationAvis') {
+                creationAvis();
             }
-            elseif ($_GET['action'] == 'portfolio') {
-                portfolio();
+            elseif ($_GET['action'] === 'supprimer') {
+                supprimer();
             }
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////

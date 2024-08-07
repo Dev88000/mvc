@@ -1,5 +1,18 @@
 <?php
     require_once 'Model/bdd.php';
+    require_once 'fonctions/showArray.php';
+  
+    function delete($id) {
+        $bdd = getBdd();
+        $req = $bdd->prepare('DELETE FROM avis WHERE id = ?');
+        return $req->execute([$id]);
+    }
+    function deleteProjet($id) {
+        $bdd = getBdd();
+        $req = $bdd->prepare('DELETE FROM projet WHERE id = ?');
+        return $req->execute([$id]);
+    }
+
     // affichage des utilisateurs
     function getUsers() {
         $req_U = getBdd()->prepare('SELECT * FROM users');
@@ -9,11 +22,42 @@
         return $users;
     }
 
-    // affichage des articles
-    function getJoin_A_U() {
-        $req_A_U = getBdd()->query('SELECT nom, prenom, articles, note, date_creation FROM avis INNER JOIN users ON users.id = avis.id_users');
-        return $req_A_U;
+    function getUsersById($id) {
+        $req_U_B_I = getBdd()->prepare("SELECT * FROM users WHERE id=?");
+        $req_U_B_I->execute([$id]);
+        $userById = $req_U_B_I->fetch(PDO::FETCH_ASSOC);
+        return $userById;
     }
+///////////////////////////////////////////////////////////////////////////////////    
+   
+///////////////////////////////////////////////////////////////////////////////////
+    function getAllProjet() {
+        $req_P = getBdd()->prepare('SELECT * FROM projet');
+        $req_P->execute();
+        $projet = $req_P->fetchAll(PDO::FETCH_ASSOC);
+        $req_P->closeCursor();
+        return $projet;
+    }
+
+    function creationProjetBDD($id, $user_id, $titre, $projet) {
+        $req_C_P = getBdd()->prepare('INSERT INTO projet(id, user_id, titre, projet) VALUES(:id, :user_id, :titre, :projet)');
+        $req_C_P->execute(['id' => $id, 'user_id' => $user_id, 'titre' => $titre, 'projet' => $projet]);
+    }
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+    function getAllAvis() {
+        $req_A = getBdd()->prepare('SELECT * FROM avis');
+        $req_A->execute();
+        $avis = $req_A->fetchAll(PDO::FETCH_ASSOC);
+        $req_A->closeCursor();
+        return $avis;
+    }
+
+    function creationAvisBDD($id, $user_id, $titre, $avis) {
+        $req_C_A = getBdd()->prepare('INSERT INTO avis(id, user_id, titre, avis) VALUES(:id, :user_id, :titre, :avis)');
+        $req_C_A->execute(['id' => $id, 'user_id' => $user_id, 'titre' => $titre, 'avis' => $avis]);
+    }
+///////////////////////////////////////////////////////////////////////////////////
 
     function getUsersMail() {
         $req_U_M = getBdd()->prepare('SELECT COUNT(*) AS numberEmail FROM users WHERE email = ?');
@@ -50,4 +94,9 @@
             $user = $req_U_C->fetch(PDO::FETCH_ASSOC);
             $req_U_C->closeCursor();
             return $req_U_C;
+    }
+
+    function formatDateFR($date) {
+        setlocale(LC_TIME, 'fr_FR.UTF-8');
+        return strftime("%d %B %Y", strtotime($date));
     }
