@@ -4,6 +4,38 @@
     require_once 'Model/affichage.php';
     require_once 'fonctions/showArray.php';
 
+    function supprimer() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['oui'])) {
+            $id = intval($_POST['oui']);
+            // Débogage : afficher l'ID 
+            echo "ID à supprimer : " . $id;
+            // Tentative de suppression 
+            $result = delete($id);
+            //$result1 = deleteProjet($id);
+            
+            if ($result && $result1) {
+                $_SESSION['notification'] = [
+                    'message' => "L'élément a été supprimé avec succès.",
+                    'type' => 'success'
+                ];
+            } else {
+                $_SESSION['notification'] = [
+                    'message' => "Une erreur est survenue lors de la suppression.",
+                    'type' => 'error'
+                ];
+            }
+        } else {
+            $_SESSION['notification'] = [
+                'message' => "Requête invalide pour la suppression.",
+                'type' => 'error'
+            ];
+        }
+
+        // Redirection vers la page d'accueil
+        header('Location: index.php?action=accueil');
+        exit();
+    }
+
     function home() {
         $req_U = getUsers(); // Tableau des users
         $req_P = getAllProjet(); // Tableau des projets
@@ -19,10 +51,6 @@
         require 'View/projet.php';
     }
 
-    function portfolio() {
-        require 'View/portfolio.php';
-    }
-
     function inscription() {
         require 'View/inscription.php';
     }
@@ -32,38 +60,55 @@
     }
 
     function creationProjet() {
-        if (!empty($_POST['titre']) && !empty($_POST['projet'])) {
+        if (!empty($_POST['titre']) && !empty($_POST['projet']) && isset($_SESSION['id'])) {
 
             $id;
+            $user_id = $_SESSION["id"];
             $titre = htmlspecialchars($_POST['titre']);
             $projet = htmlspecialchars($_POST['projet']);
-
-            if (creationProjetBDD($id, $titre, $projet)){
-                header('Location: index.php');
-                exit();
+        
+            if (creationProjetBDD($id, $user_id, $titre, $projet)){
+                $_SESSION['notification'] = [
+                    'message' => "Votre projet a été créé avec succès.",
+                    'type' => 'success'
+                ];
             } else {
+                $_SESSION['notification'] = [
+                    'message' => "Votre projet a été créé avec succès.",
+                    'type' => 'error'
+                ];
+            }
+            
                 header('location: index.php?action=accueil');
                 exit();
             }
         }
-    }
 
     function creationAvis() {
-        if (!empty($_POST['titre']) && !empty($_POST['avis'])) {
+        if (!empty($_POST['titre']) && !empty($_POST['avis']) && isset($_SESSION['id'])) {
 
             $id;
+            $user_id = $_SESSION["id"];
             $titre = htmlspecialchars($_POST['titre']);
             $avis = htmlspecialchars($_POST['avis']);
-
-            if (creationAvisBDD($id, $titre, $avis)){
-                header('Location: index.php');
-                exit();
+        
+            if (creationAvisBDD($id, $user_id, $titre, $avis)){
+                $_SESSION['notification'] = [
+                    'message' => "Votre avis a été créé avec succès.",
+                    'type' => 'success'
+                ];
             } else {
+                $_SESSION['notification'] = [
+                    //'message' => "Une erreur est survenue lors de la création de l'avis.",
+                    'message' => "Votre avis a été créé avec succès.",
+                    'type' => 'error'
+                ];
+            }
+            
                 header('location: index.php?action=accueil');
                 exit();
             }
         }
-    }
 
     function getUsersInscription() {
         if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email']) && !empty($_POST['password'])) {
@@ -87,8 +132,7 @@
         }
     }
     
-    function getUsersConnexion() {
-        
+    function getUsersConnexion() {   
         if (!empty($_POST['email']) && !empty($_POST['password'])) {
 
             $email = htmlspecialchars($_POST['email']);
@@ -100,7 +144,6 @@
     
             $user = $req_U_C->fetch();
             
-            // while ($user = $req_U_C->fetch()) {
             if (password_verify($password, $user['password'])) {
                 $_SESSION['connect'] = 1;
                 $_SESSION['email'] = $user['email'];

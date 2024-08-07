@@ -1,6 +1,18 @@
 <?php
     require_once 'Model/bdd.php';
-    
+    require_once 'fonctions/showArray.php';
+  
+    function delete($id) {
+        $bdd = getBdd();
+        $req = $bdd->prepare('DELETE FROM avis WHERE id = ?');
+        return $req->execute([$id]);
+    }
+    function deleteProjet($id) {
+        $bdd = getBdd();
+        $req = $bdd->prepare('DELETE FROM projet WHERE id = ?');
+        return $req->execute([$id]);
+    }
+
     // affichage des utilisateurs
     function getUsers() {
         $req_U = getBdd()->prepare('SELECT * FROM users');
@@ -10,6 +22,14 @@
         return $users;
     }
 
+    function getUsersById($id) {
+        $req_U_B_I = getBdd()->prepare("SELECT * FROM users WHERE id=?");
+        $req_U_B_I->execute([$id]);
+        $userById = $req_U_B_I->fetch(PDO::FETCH_ASSOC);
+        return $userById;
+    }
+///////////////////////////////////////////////////////////////////////////////////    
+   
 ///////////////////////////////////////////////////////////////////////////////////
     function getAllProjet() {
         $req_P = getBdd()->prepare('SELECT * FROM projet');
@@ -19,9 +39,9 @@
         return $projet;
     }
 
-    function creationProjetBDD($id, $titre, $projet) {
-        $req_C_P = getBdd()->prepare('INSERT INTO projet(id, titre, projet) VALUES(:id, :titre, :projet)');
-        $req_C_P->execute(['id' => $id, 'titre' => $titre, 'projet' => $projet]);
+    function creationProjetBDD($id, $user_id, $titre, $projet) {
+        $req_C_P = getBdd()->prepare('INSERT INTO projet(id, user_id, titre, projet) VALUES(:id, :user_id, :titre, :projet)');
+        $req_C_P->execute(['id' => $id, 'user_id' => $user_id, 'titre' => $titre, 'projet' => $projet]);
     }
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
@@ -33,9 +53,9 @@
         return $avis;
     }
 
-    function creationAvisBDD($id, $titre, $avis) {
-        $req_C_A = getBdd()->prepare('INSERT INTO avis(id, titre, avis) VALUES(:id, :titre, :avis)');
-        $req_C_A->execute(['id' => $id, 'titre' => $titre, 'avis' => $avis]);
+    function creationAvisBDD($id, $user_id, $titre, $avis) {
+        $req_C_A = getBdd()->prepare('INSERT INTO avis(id, user_id, titre, avis) VALUES(:id, :user_id, :titre, :avis)');
+        $req_C_A->execute(['id' => $id, 'user_id' => $user_id, 'titre' => $titre, 'avis' => $avis]);
     }
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -74,4 +94,9 @@
             $user = $req_U_C->fetch(PDO::FETCH_ASSOC);
             $req_U_C->closeCursor();
             return $req_U_C;
+    }
+
+    function formatDateFR($date) {
+        setlocale(LC_TIME, 'fr_FR.UTF-8');
+        return strftime("%d %B %Y", strtotime($date));
     }
