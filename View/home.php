@@ -118,9 +118,9 @@
                     </div>
                     <div class="modal-body">
                         <?php 
-                        // Passer l'ID du  projetà modalSupp.php
+                        // Passer l'ID du  projet à modalSuppProjet.php
                         $id = $projet['id'];
-                        require 'View/modalSupp.php'; 
+                        require 'View/modalSuppProjet.php'; 
                         ?>
                     </div>
                 </div>
@@ -200,9 +200,9 @@
                     </div>
                     <div class="modal-body">
                         <?php 
-                        // Passer l'ID de l'avis à modalSupp.php
+                        // Passer l'ID de l'avis à modalSuppAvis.php
                         $id = $avis['id'];
-                        require 'View/modalSupp.php'; 
+                        require 'View/modalSuppAvis.php'; 
                         ?>
                     </div>
                 </div>

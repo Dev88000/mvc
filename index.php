@@ -10,11 +10,14 @@
             elseif ($_GET['action'] == 'creationProjet') {
                 creationProjet();
             }
+            elseif ($_GET['action'] === 'supprimerProjet') {
+                supprimerProjet();
+            }
             elseif ($_GET['action'] == 'creationAvis') {
                 creationAvis();
             }
-            elseif ($_GET['action'] === 'supprimer') {
-                supprimer();
+            elseif ($_GET['action'] === 'supprimerAvis') {
+                supprimerAvis();
             }
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////

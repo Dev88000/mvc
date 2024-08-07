@@ -2,11 +2,12 @@
     require_once 'Model/bdd.php';
     require_once 'fonctions/showArray.php';
   
-    function delete($id) {
+    function deleteAvis($id) {
         $bdd = getBdd();
         $req = $bdd->prepare('DELETE FROM avis WHERE id = ?');
         return $req->execute([$id]);
     }
+    
     function deleteProjet($id) {
         $bdd = getBdd();
         $req = $bdd->prepare('DELETE FROM projet WHERE id = ?');
