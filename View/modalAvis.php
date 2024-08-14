@@ -6,6 +6,6 @@
 		</form>
 		<?php } else { ?>
 			<button class="btn btn-success m-3" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Connectez-vous</button>
-        <?php } ?>	
+        <?php } ?>
 	</div>
 </section>

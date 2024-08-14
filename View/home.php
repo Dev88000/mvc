@@ -5,7 +5,7 @@
     ob_start();
 
 
-    // Définir la variable $id avant d'inclure modalSupp.php
+    // Définir la variable $id avant d'inclure modalSuppAvis.php
     $id = isset($_GET['id']) ? $_GET['id'] : null;
 ?>
 <main class="container">
