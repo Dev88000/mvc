@@ -2,6 +2,7 @@
     session_start();
 
     require_once 'Model/affichage.php';
+    require_once 'Model/is_Admin.php';
     require_once 'fonctions/showArray.php';
 
     function supprimerAvis() {
@@ -68,6 +69,7 @@
 
     function home() {
         $req_U = getUsers(); // Tableau des users
+        $req_admin = isAdmin($_SESSION['id']);
         $req_P = getAllProjet(); // Tableau des projets
         $req_A = getAllAvis(); // Tableau des avis
         require 'View/home.php';
