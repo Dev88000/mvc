@@ -1,7 +1,7 @@
 <?php
     require_once 'Model/bdd.php';
     require_once 'fonctions/showArray.php';
-  
+
     // affichage des utilisateurs
     function getUsers() {
         $req_U = getBdd()->prepare('SELECT * FROM users');
@@ -17,7 +17,7 @@
         $userById = $req_U_B_I->fetch(PDO::FETCH_ASSOC);
         return $userById;
     }
-///////////////////////////////////////////////////////////////////////////////////    
+///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
     // affichage des projets
     function getAllProjet() {
@@ -32,6 +32,12 @@
     function creationProjetBDD($id, $user_id, $titre, $projet) {
         $req_C_P = getBdd()->prepare('INSERT INTO projet(id, user_id, titre, projet) VALUES(:id, :user_id, :titre, :projet)');
         $req_C_P->execute(['id' => $id, 'user_id' => $user_id, 'titre' => $titre, 'projet' => $projet]);
+    }
+    
+    // modification d'un projet
+    function upDateProjet($titre, $projet, $id) {
+        $req_M_P = getBdd()->prepare('UPDATE projet SET titre = :titre, projet = :projet WHERE id = :id');
+        $req_M_P->execute(['titre' => $titre, 'projet' => $projet, 'id' => $id]);
     }
 
     // suppression du projet
@@ -107,8 +113,11 @@
     }
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
     // formatage de la date
     function formatDateFR($date) {
         setlocale(LC_TIME, 'fr_FR.UTF-8');
-        return strftime("%d %B %Y", strtotime($date));
+        return strftime("%d/%m/%y", strtotime($date));
     }

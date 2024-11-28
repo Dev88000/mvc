@@ -34,15 +34,19 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <button class="btn btn-primary m-3" data-bs-target="#menu_avis" data-bs-toggle="modal">Menu des avis</button>
+                            <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == "1") { ?>
+                                <button class="btn btn-primary m-3" data-bs-target="#menu_avis" data-bs-toggle="modal">Menu des avis</button>
+                            <?php } ?>
                         </li>
                         <li class="nav-item">
-                            <button class="btn btn-primary m-3" data-bs-target="#menu_projet" data-bs-toggle="modal">Menu des projets</button>
+                            <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == "1") { ?>
+                                <button class="btn btn-primary m-3" data-bs-target="#menu_projet" data-bs-toggle="modal">Menu des projets</button>
+                            <?php } ?>
                         </li>
                         <li class="nav-item"> 
                             <?php if (isset($_SESSION['prenom'])) { ?>
                                     <a href="index.php?action=getUsersDeconnexion" class="btn btn-danger m-3">Déconnexion</a>
-                                    <span class="text-white m-3">Ligne 45 (base.php) ID: <?= $_SESSION['prenom'] ?></span> <!-- Affichage de l'ID de l'utilisateur -->
+                                    <span class="text-white m-3">Ligne 49 (base.php) ID: <?= $_SESSION['prenom'] ?></span> <!-- Affichage de l'ID de l'utilisateur -->
                             <?php } else { ?>
                                 <button class="btn btn-success m-3" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Connectez-vous</button>
                             <?php } ?>
@@ -53,7 +57,7 @@
         </nav>
     </header>
 
-    <!-- Pour l'affichage de suppression et de création Toast -->
+    <!-- Pour l'affichage de suppression et de création de Validation -->
     <div class="toast-container">
         <div id="notification" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
@@ -112,6 +116,7 @@
         </div>
     </div>
 
+
     <!-- Affichage des pages -->
     <div class="text-center">
         <div>
@@ -120,7 +125,7 @@
     </div>
     <script src="./Public/js/bootstrap.bundle.js"></script>
 
-    <!-- Pour l'affichage de suppression et de création Toast -->
+    <!-- Validation de suppression d'un poste et de création -->
     <script>
         function showNotification(message, type) {
             const notification = document.getElementById('notification');

@@ -9,7 +9,6 @@
     $id = isset($_GET['id']) ? $_GET['id'] : null;
 ?>
 <main class="container">
-
     <!-- Premiere partie -->
     <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
         <div class="card">
@@ -28,19 +27,10 @@
                                     reprehenderit. Hic
                                 </p>
                                 <div class="card-footer">
-                                    <button class="btn btn-primary">Télécharger mon CV</button>
+                                    <a href="Controller/dl.php?file=ProfessionalDevTony.pdf" class="btn btn-primary">
+                                        <i class="fas fa-download me-2"></i>Télécharger mon CV
+                                    </a>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Partie dernier projet en video -->
-                    <div class="col-12 col-sm-12 col-lg-5 col-xl-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2 class="card-title">Mon dernier projet</h2>
-                                <video class="col-12 col-sm-12 col-lg-12 col-xl-12" width="320" height="240" controls>
-                                    <source src="Public/assets/favCursor.mp4" type="video/mp4">
-                                </video>
                             </div>
                         </div>
                     </div>
@@ -50,9 +40,6 @@
     </div>
 </main>
 <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////// --> 
 <!-- Modal creation projet -->
 <div class="modal fade" id="creation_projet" aria-hidden="true" aria-labelledby="creation_projet_Label" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -89,15 +76,18 @@
                 $req_U_B_I = getUsersById($projet["user_id"]);
         ?>
         <div class="col-12 col-sm-6 col-lg-4 col-xl-3 g-4">
-            <div class="">
+            <div class="mb-2">
                 <div class="card bg-success">
                     <div class="card-body">
-                        <button type="button" name="modif_projet" class="btn"><i class="fa-solid fa-pen text-warning"></i></button>
-                        <button type="button" name="supp_projet" class="btn" data-bs-target="#supp_projet_<?php echo $projet['id']; ?>" data-bs-toggle="modal"><i class="fa-solid fa-trash text-danger"></i></button>
+                        <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == "1") { ?>
+                            <button type="button" name="modif_projet" class="btn"><i class="fa-solid fa-pen text-warning"></i></button>
+                            <button type="button" name="supp_projet" class="btn" data-bs-target="#supp_projet_<?php echo $projet['id']; ?>" data-bs-toggle="modal"><i class="fa-solid fa-trash text-danger"></i></button>
+                        <?php } ?>
                         <h5 class="card-title"><?php echo $projet['titre']; ?></h5>
                         <p class="card-text text-start"><?php echo $projet['projet']; ?></p>
                         <p class="card-text text-dark text-end">
-                        <small>Projet posté le : <?php echo formatDateFR($projet['projet_date']); ?></small>
+                        <!-- Ajout de button de commentaire -->
+                        <button type="button" name="commentaire-projet" class="btn"><i class="fa-solid fa-comment text-info"></i></button>
                         </p>
                     </div>
                 </div>
@@ -131,9 +121,6 @@
         ?>
     </div>
 </div>
-<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- Modal creation Avis -->
 <div class="modal fade" id="creation_avis" aria-hidden="true" aria-labelledby="creation_avis_Label" tabindex="-1">
@@ -171,15 +158,18 @@
                 $req_U_B_I = getUsersById($avis["user_id"]);
         ?>
         <div class="col-12 col-sm-6 col-lg-4 col-xl-3 g-4">
-            <div class="">
+            <div class="mb-2">
                 <div class="card bg-info">
                     <div class="card-body">
-                        <button type="button" name="modif_avis" class="btn"><i class="fa-solid fa-pen text-warning"></i></button>
-                        <button type="button" name="supp_avis" class="btn" data-bs-target="#supp_avis_<?php echo $avis['id']; ?>" data-bs-toggle="modal"><i class="fa-solid fa-trash text-danger"></i></button>
+                        <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == "1") { ?>
+                            <button type="button" name="modif_avis" class="btn"><i class="fa-solid fa-pen text-warning"></i></button>
+                            <button type="button" name="supp_avis" class="btn" data-bs-target="#supp_avis_<?php echo $avis['id']; ?>" data-bs-toggle="modal"><i class="fa-solid fa-trash text-danger"></i></button>
+                        <?php } ?>
                         <h5 class="card-title"><?php echo $avis['titre']; ?></h5>
                         <p class="card-text text-start"><?php echo $avis['avis']; ?></p>
                         <p class="card-text text-dark text-end">
-                        <small><?php echo $req_U_B_I['prenom']; ?> à posté le : <?php echo formatDateFR($avis['avis_date']); ?></small>
+                        <!-- Ajout de button de commentaire -->
+                        <button type="button" name="commentaire-avis" class="btn"><i class="fa-solid fa-comment text-success"></i></button>
                         </p>
                     </div>
                 </div>
@@ -214,8 +204,34 @@
     </div>
 </div>
 <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
+<footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>À propos</h5>
+                    <p class="small">Blog personnel de Tony, partageant mes projets et expériences en développement web.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Liens rapides</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Suivez-moi</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-white mx-2"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-white mx-2"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-white mx-2"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-3">
+            <div class="small">
+                &copy; <?= date('Y') ?> Tony's Blog. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
 <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
 <?php
     $content = ob_get_clean();
