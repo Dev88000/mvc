@@ -1,6 +1,6 @@
 <section class="w-100">
 	<div class="w-100">
-	<?php if (isset($_SESSION['prenom'])) { ?>
+	<?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == "1") { ?>
 		<form>	
         <button type="button" name="creation_projet" class="btn btn-primary m-3" data-bs-target="#creation_projet" data-bs-toggle="modal">Ajouter un projet</button>
 		</form>

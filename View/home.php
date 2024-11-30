@@ -54,7 +54,7 @@
         </div>
     </div>
 </div>
-<!-- Modal projet -->
+<!-- Modal projet sur le fichier base.php -->
 <div class="modal fade" id="menu_projet" aria-hidden="true" aria-labelledby="menu_projet_Label" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -64,6 +64,20 @@
             </div>
             <div class="modal-body">
                 <?php require 'View/modalProjet.php'; ?>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal modification projet -->
+<div class="modal fade" id="modif_projet" aria-hidden="true" aria-labelledby="modif_projet_Label" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modif_projet_Label">Modifier un projet</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <?php require 'View/modifProjet.php'; ?>
             </div>
         </div>
     </div>
@@ -79,15 +93,19 @@
             <div class="mb-2">
                 <div class="card bg-success">
                     <div class="card-body">
+                        <!-- Button de suppression et modification, visible que par l'admin -->
                         <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == "1") { ?>
-                            <button type="button" name="modif_projet" class="btn"><i class="fa-solid fa-pen text-warning"></i></button>
+                            <button type="button" name="modif_projet" class="btn" data-bs-target="#modif_projet" data-bs-toggle="modal"><i class="fa-solid fa-pen text-warning"></i></button>
                             <button type="button" name="supp_projet" class="btn" data-bs-target="#supp_projet_<?php echo $projet['id']; ?>" data-bs-toggle="modal"><i class="fa-solid fa-trash text-danger"></i></button>
                         <?php } ?>
+                        <!-- Affiche la Card projet -->
                         <h5 class="card-title"><?php echo $projet['titre']; ?></h5>
                         <p class="card-text text-start"><?php echo $projet['projet']; ?></p>
                         <p class="card-text text-dark text-end">
-                        <!-- Ajout de button de commentaire -->
+                        <!-- Button pour ajouter un commentaire, visible pour les connecters -->
+                        <?php if (isset($_SESSION['prenom'])) { ?>
                         <button type="button" name="commentaire-projet" class="btn"><i class="fa-solid fa-comment text-info"></i></button>
+                        <?php } ?>
                         </p>
                     </div>
                 </div>
@@ -100,7 +118,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="supp_projet_Label_<?php echo $projet['id']; ?>">Voulez-vous vraiment supprimer votre projet ?</h1>
-                        <?php if (isset($_SESSION['prenom'])) { ?>
+                        <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == "1") { ?>
                             <span class="text-black m-3">ID du projet : <?php echo $projet['id']; ?></span>
                         <?php } else { ?>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -136,7 +154,7 @@
         </div>
     </div>avis
 </div>
-<!-- Modal avis -->
+<!-- Modal avis  sur le fichier base.php-->
 <div class="modal fade" id="menu_avis" aria-hidden="true" aria-labelledby="menu_avis_Label" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -204,7 +222,7 @@
     </div>
 </div>
 <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
-<footer class="bg-dark text-white text-center py-4 mt-5">
+    <footer class="bg-dark text-white text-center py-4 mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-3">

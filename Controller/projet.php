@@ -29,6 +29,30 @@
         }
     }
 
+    function modificationProjet() {
+        if (!empty($_POST['titre']) && !empty($_POST['projet']) && isset($_SESSION['id'])) {
+            $id = intval($_POST['id']);
+            $user_id = $_SESSION["id"];
+            $titre = htmlspecialchars($_POST['titre']);
+            $projet = htmlspecialchars($_POST['projet']);
+        
+            if (upDateProjetBDD($id, $user_id, $titre, $projet)){
+                $_SESSION['notification'] = [
+                    'message' => "Votre projet a été modifié avec succès.",
+                    'type' => 'success'
+                ];
+            } else {
+                $_SESSION['notification'] = [
+                    'message' => "Une erreur est survenue lors de la modification.",
+                    'type' => 'error'
+                ];
+            }
+            
+            header('location: index.php?action=accueil');
+            exit();
+        }
+    }
+
     function supprimerProjet() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['oui_projet'])) {
             $id = intval($_POST['oui_projet']);
