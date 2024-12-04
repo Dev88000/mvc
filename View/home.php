@@ -74,7 +74,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="modif_projet_Label">Modifier un projet</h1>
+                <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == "1") { ?>
+                            <span class="text-black m-3">ID du projet : <?php echo $projet['id']; ?></span>
+                        <?php } else { ?>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <?php } ?>
             </div>
             <div class="modal-body">
                 <?php require 'View/modifProjet.php'; ?>
@@ -128,7 +132,7 @@
                         <?php 
                         // Passer l'ID du  projet à modalSuppProjet.php
                         $id = $projet['id'];
-                        require 'View/modalSuppProjet.php'; 
+                        require 'View/modalSuppProjet.php';
                         ?>
                     </div>
                 </div>

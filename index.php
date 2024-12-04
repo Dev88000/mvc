@@ -10,6 +10,9 @@
             elseif ($_GET['action'] == 'creationProjet') {
                 creationProjet();
             }
+            elseif ($_GET['action'] == 'modificationProjet') {
+                modificationProjet();
+            }
             elseif ($_GET['action'] === 'supprimerProjet') {
                 supprimerProjet();
             }
