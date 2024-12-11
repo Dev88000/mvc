@@ -14,10 +14,10 @@
         $req_C_P->execute(['id' => $id, 'user_id' => $user_id, 'titre' => $titre, 'projet' => $projet]);
     }
     
-    // modification d'un projet
-    function upDateProjetBDD($titre, $projet, $id) {
-        $req_M_P = getBdd()->prepare('UPDATE projet SET titre = :titre, projet = :projet WHERE id = :id');
-        $req_M_P->execute(['titre' => $titre, 'projet' => $projet, 'id' => $id]);
+    // modification du projet
+    function upDateProjetBDD($id, $titre, $projet) {
+        $req_M_P = getBdd()->prepare('UPDATE projet SET titre = :titre, projet = :projet WHERE id = ?');
+        $req_M_P->execute(['id' => $id, 'titre' => $titre, 'projet' => $projet]);
     }
 
     // suppression du projet

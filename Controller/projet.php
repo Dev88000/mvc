@@ -1,7 +1,5 @@
 <?php
 
-
-
     function Projet() {
         require 'View/projet.php';
     }
@@ -32,14 +30,13 @@
     }
 
     function modificationProjet() {
-            print_r($_POST);
         if (!empty($_POST['titre']) && !empty($_POST['projet']) && isset($_SESSION['id']) && !empty($_POST['id'])) {
 
             $id = intval($_POST['id']);
             $titre = htmlspecialchars($_POST['titre']);
             $projet = htmlspecialchars($_POST['projet']);
 
-            if (upDateProjetBDD($titre, $projet, $id)) {
+            if (upDateProjetBDD($id, $titre, $projet)) {
                 $_SESSION['notification'] = [
                     'message' => "Votre projet a été modifié avec succès.",
                     'type' => 'success'
@@ -54,11 +51,7 @@
             header('location: index.php?action=accueil');
             exit();
         } else {
-            echo "<br>Vérification des conditions : ";
-            echo "<br>titre présent || " . (!empty($_POST['titre']) ? 'oui' : 'non');
-            echo "<br>projet présent || " . (!empty($_POST['projet']) ? 'oui' : 'non');
-            echo "<br>session id présent || " . (isset($_SESSION['id']) ? 'oui' : 'non');
-            echo "<br>post id présent || " . (!empty($_POST['id']) ? 'oui' : 'non');
+           require_once 'View/tableauErr.php';
         }
     }
     
@@ -67,12 +60,8 @@
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['oui_projet'])) {
             
             $id = intval($_POST['oui_projet']);
-            // Débogage : afficher l'ID 
-            echo "ID à supprimer : " . $id;
-            // Tentative de suppression 
-            $result = deleteProjet($id);
 
-            if ($result) {
+            if (deleteProjet($id)) {
                 $_SESSION['notification'] = [
                     'message' => "L'élément a été supprimé avec succès.",
                     'type' => 'success'

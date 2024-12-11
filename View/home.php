@@ -54,7 +54,7 @@
         </div>
     </div>
 </div>
-<!-- Modal projet sur le fichier base.php -->
+<!-- Button Modal projet sur le fichier base.php -->
 <div class="modal fade" id="menu_projet" aria-hidden="true" aria-labelledby="menu_projet_Label" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -68,38 +68,22 @@
         </div>
     </div>
 </div>
-<!-- Modal modification projet -->
-<div class="modal fade" id="modif_projet" aria-hidden="true" aria-labelledby="modif_projet_Label" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modif_projet_Label">Modifier un projet</h1>
-                <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == "1") { ?>
-                            <span class="text-black m-3">ID du projet : <?php echo $projet['id']; ?></span>
-                        <?php } else { ?>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <?php } ?>
-            </div>
-            <div class="modal-body">
-                <?php require 'View/modifProjet.php'; ?>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal afficher et supprimer projet -->
+
+
 <div class="container">
     <div class="row">
         <?php
             foreach ($req_P as $projet) {
                 $req_U_B_I = getUsersById($projet["user_id"]);
         ?>
+        <!-- Modal afficher projet -->
         <div class="col-12 col-sm-6 col-lg-4 col-xl-3 g-4">
             <div class="mb-2">
                 <div class="card bg-success">
                     <div class="card-body">
                         <!-- Button de suppression et modification, visible que par l'admin -->
                         <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == "1") { ?>
-                            <button type="button" name="modif_projet" class="btn" data-bs-target="#modif_projet" data-bs-toggle="modal"><i class="fa-solid fa-pen text-warning"></i></button>
+                            <button type="button" name="modif_projet" class="btn" data-bs-target="#modif_projet_<?php echo $projet['id']; ?>" data-bs-toggle="modal"><i class="fa-solid fa-pen text-warning"></i></button>
                             <button type="button" name="supp_projet" class="btn" data-bs-target="#supp_projet_<?php echo $projet['id']; ?>" data-bs-toggle="modal"><i class="fa-solid fa-trash text-danger"></i></button>
                         <?php } ?>
                         <!-- Affiche la Card projet -->
@@ -115,7 +99,27 @@
                 </div>
             </div>
         </div>
-
+        <!-- Modal modification projet -->
+        <div class="modal fade" id="modif_projet_<?php echo $projet['id']; ?>" aria-hidden="true" aria-labelledby="modif_projet_Label_<?php echo $projet['id']; ?>" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modif_projet_Label_<?php echo $projet['id']; ?>">Modifier un projet</h1>
+                        <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == "1") { ?>
+                            <span class="text-black m-3">ID du projet : <?php echo $projet['id']; ?></span>
+                        <?php } else { ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <?php } ?>
+                    </div>
+                    <div class="modal-body">
+                        <?php 
+                        $id = $projet['id'];
+                        require 'View/modifProjet.php'; 
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Modal supprimer projet -->
         <div class="modal fade" id="supp_projet_<?php echo $projet['id']; ?>" aria-hidden="true" aria-labelledby="supp_projet_Label_<?php echo $projet['id']; ?>" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
@@ -143,6 +147,10 @@
         ?>
     </div>
 </div>
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- Modal creation Avis -->
 <div class="modal fade" id="creation_avis" aria-hidden="true" aria-labelledby="creation_avis_Label" tabindex="-1">
