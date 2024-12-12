@@ -34,11 +34,6 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <?php if (isset($_SESSION['prenom'])) { ?>
-                                <button class="btn btn-primary m-3" data-bs-target="#menu_avis" data-bs-toggle="modal">Ajouter un avis</button>
-                            <?php } ?>
-                        </li>
-                        <li class="nav-item">
                             <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == "1") { ?>
                                 <button class="btn btn-primary m-3" data-bs-target="#menu_projet" data-bs-toggle="modal">Ajouter un projet</button>
                             <?php } ?>
@@ -115,7 +110,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- Affichage des pages -->
     <div class="text-center">
