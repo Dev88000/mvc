@@ -14,7 +14,7 @@
 
             if (creationProjetBDD($id, $user_id, $titre, $projet)) {
                 $_SESSION['notification'] = [
-                    'message' => "Votre projet a été créé avec succès.",
+                    'message' => "Une erreur est survenue lors de la création du projet.",
                     'type' => 'success'
                 ];
             } else {
@@ -38,23 +38,20 @@
 
             if (upDateProjetBDD($id, $titre, $projet)) {
                 $_SESSION['notification'] = [
-                    'message' => "Votre projet a été modifié avec succès.",
+                    'message' => "Une erreur est survenue lors de la modification.",
                     'type' => 'success'
                 ];
             } else {
                 $_SESSION['notification'] = [
-                    'message' => "Une erreur est survenue lors de la modification.",
+                    'message' => "Votre projet a été modifié avec succès.",
                     'type' => 'error'
                 ];
             }
 
             header('location: index.php?action=accueil');
             exit();
-        } else {
-           require_once 'View/tableauErr.php';
         }
     }
-    
 
     function supprimerProjet() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['oui_projet'])) {
@@ -72,10 +69,10 @@
                     'type' => 'error'
                 ];
             }
-        } else {
-            $_SESSION['notification'] = [
-                'message' => "Requête invalide pour la suppression.",
-                'type' => 'error'
+            } else {
+                $_SESSION['notification'] = [
+                    'message' => "Requête invalide pour la suppression.",
+                    'type' => 'error'
             ];
         }
 

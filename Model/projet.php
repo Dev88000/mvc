@@ -7,7 +7,7 @@
         $req_P->closeCursor();
         return $projet;
     }
-
+    
     // création du projet
     function creationProjetBDD($id, $user_id, $titre, $projet) {
         $req_C_P = getBdd()->prepare('INSERT INTO projet (id, user_id, titre, projet) VALUES(:id, :user_id, :titre, :projet)');
@@ -16,7 +16,7 @@
     
     // modification du projet
     function upDateProjetBDD($id, $titre, $projet) {
-        $req_M_P = getBdd()->prepare('UPDATE projet SET titre = :titre, projet = :projet WHERE id = ?');
+        $req_M_P = getBdd()->prepare('UPDATE projet SET titre = :titre, projet = :projet WHERE id = :id');
         $req_M_P->execute(['id' => $id, 'titre' => $titre, 'projet' => $projet]);
     }
 

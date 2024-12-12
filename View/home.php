@@ -69,7 +69,6 @@
     </div>
 </div>
 
-
 <div class="container">
     <div class="row">
         <?php
@@ -85,7 +84,7 @@
                         <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == "1") { ?>
                             <button type="button" name="modif_projet" class="btn" data-bs-target="#modif_projet_<?php echo $projet['id']; ?>" data-bs-toggle="modal"><i class="fa-solid fa-pen text-warning"></i></button>
                             <button type="button" name="supp_projet" class="btn" data-bs-target="#supp_projet_<?php echo $projet['id']; ?>" data-bs-toggle="modal"><i class="fa-solid fa-trash text-danger"></i></button>
-                        <?php } ?>
+                            <?php } ?>
                         <!-- Affiche la Card projet -->
                         <h5 class="card-title"><?php echo $projet['titre']; ?></h5>
                         <p class="card-text text-start"><?php echo $projet['projet']; ?></p>
