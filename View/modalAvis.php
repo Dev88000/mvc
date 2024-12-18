@@ -1,6 +1,5 @@
 <section class="w-100" style="max-height: 400px; overflow-y: auto;">
-	<div class="w-100">	
-		<form>	
+	<div class="w-100">		
 		<div class="row">
 		<?php
 			foreach ($req_A as $avis) {
@@ -10,7 +9,7 @@
 				<div class="mb-2">
 					<div class="card bg-info">
 						<div class="card-body">
-							<?php if (isset($_SESSION['prenom'])) { ?>
+							<?php if (isset($_SESSION['prenom']) && $_SESSION['id'] == $avis['user_id']) { ?>
 								<div class="d-flex justify-content-end">
 									<button type="button" name="modif_avis" class="btn"><i class="fa-solid fa-pen text-warning"></i></button>
 									<button type="button" name="supp_avis" class="btn" data-bs-target="#supp_avis_<?php echo $avis['id']; ?>" data-bs-toggle="modal"><i class="fa-solid fa-trash text-danger"></i></button>
@@ -18,13 +17,12 @@
 							<?php } ?>
 							<h5 class="card-title"><?php echo $avis['titre']; ?></h5>
 							<p class="card-text text-start"><?php echo $avis['avis']; ?></p>
-							<p class="card-text text-dark text-end"></p>
+							<p class="card-text text-dark text-end">user id <?php echo $avis['user_id']; ?></p>
 						</div>
 					</div>
 				</div>
 			</div>
-		</form>
-        <?php } ?>
+		<?php } ?>
 		</div> 
 	</div>
 </section>

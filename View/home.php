@@ -162,14 +162,36 @@
 </div>
 <!-- Modal creation Avis -->
 <div class="modal fade" id="creation_avis" aria-hidden="true" aria-labelledby="creation_avis_Label" tabindex="-1">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="creation_avis_Label">Ajouter un avis</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<?php require 'View/avis.php'; ?>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal supprimer avis pour chaque avis -->
+<div class="modal fade" id="supp_avis_<?php echo $avis['id']; ?>" aria-hidden="true" aria-labelledby="supp_avis_Label_<?php echo $avis['id']; ?>" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="creation_avis_Label">Ajouter un avis</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h1 class="modal-title fs-5" id="supp_avis_Label_<?php echo $avis['id']; ?>">Voulez-vous vraiment supprimer votre avis ?</h1>
+                <?php if (isset($_SESSION['prenom'])) { ?>
+                    <span class="text-black m-3">ID de l'avis : <?php echo $avis['id']; ?></span>
+                <?php } else { ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <?php } ?>
             </div>
             <div class="modal-body">
-                <?php require 'View/avis.php'; ?>
+                <?php 
+                // Passer l'ID de l'avis à modalSuppAvis.php
+                $id = $avis['id'];
+                require 'View/modalSuppAvis.php';
+                ?>
             </div>
         </div>
     </div>
