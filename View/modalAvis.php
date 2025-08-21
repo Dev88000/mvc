@@ -11,7 +11,7 @@
 						<div class="card-body">
 							<?php if (isset($_SESSION['prenom']) && (int) $_SESSION['id'] === (int) $avis['user_id']) { ?>
 								<div class="d-flex justify-content-end">
-									<button type="button" name="modif_avis" class="btn"><i class="fa-solid fa-pen text-warning"></i></button>
+									<button type="button" name="modif_avis" class="btn" data-bs-target="#modif_avis_<?php echo $avis['id']; ?>" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-pen text-warning"></i></button>
 									<button type="button" name="supp_avis" class="btn" data-bs-target="#supp_avis_<?php echo $avis['id']; ?>" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-trash text-danger"></i></button>
 								</div>
 							<?php } ?>

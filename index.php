@@ -19,6 +19,9 @@
             elseif ($_GET['action'] == 'creationAvis') {
                 creationAvis();
             }
+            elseif ($_GET['action'] == 'modificationAvis') {
+                modificationAvis();
+            }   
             elseif ($_GET['action'] === 'supprimerAvis') {
                 supprimerAvis();
             }

@@ -1,23 +1,27 @@
 <?php
 session_start();
 
+
+// Récupération de tous les projets pour affichage dans le tableau
+$allProjet = function_exists('getAllProjet') ? getAllProjet() : [];
+
+// Récupération de tous les avis pour affichage dans le tableau
+$allAvis = function_exists('getAllAvis') ? getAllAvis() : [];
+
 // Organisation des vérifications en groupes
 $verifications = [
     'Vérifications Globale' => [
-        'Informations Projet' => [
-            'Post ID' => ['check' => !empty($_GET['id']), 'value' => $_GET['id'] ?? 'Non défini'],
-            'Titre' => ['check' => !empty($_POST['titre']), 'value' => $_POST['titre'] ?? 'Non défini'],
-            'Projet' => ['check' => !empty($_POST['projet']), 'value' => $_POST['projet'] ?? 'Non défini']
-        ],
-        'Informations Avis' => []
+        'Informations' => [
+            'Nombre total de projets' => ['check' => isset($allProjet), 'value' => isset($allProjet) ? count($allProjet) : 0],
+            'Nombre total d\'avis' => ['check' => isset($allAvis), 'value' => isset($allAvis) ? count($allAvis) : 0]
+        ]
     ],
     '' => [
-        'Informations Utilisateur' => [
+        'Informations Utilisateurs' => [
             'Session ID' => ['check' => isset($_SESSION['id']), 'value' => $_SESSION['id'] ?? 'Non défini'],
             'Session NOM' => ['check' => isset($_SESSION['nom']), 'value' => $_SESSION['nom'] ?? 'Non défini'],
             'Session PRENOM' => ['check' => isset($_SESSION['prenom']), 'value' => $_SESSION['prenom'] ?? 'Non défini'],
-            'Session MAIL' => ['check' => isset($_SESSION['email']), 'value' => $_SESSION['email'] ?? 'Non défini'],
-            'Session PASS' => ['check' => isset($_SESSION['password']), 'value' => $_SESSION['password'] ?? 'Non défini']
+            'Session MAIL' => ['check' => isset($_SESSION['email']), 'value' => $_SESSION['email'] ?? 'Non défini']
         ]
     ]
 ];
@@ -50,7 +54,7 @@ foreach ($verifications as $mainTitle => $groups) {
             echo "<td style='padding: 8px; border: 1px solid #ddd; color: " . 
                  ($data['check'] ? '#2a9d8f' : '#e63946') . "; font-weight: bold;'>" . 
                  ($data['check'] ? 'OK' : 'ERREUR') . "</td>";
-            echo "<td style='padding: 8px; border: 1px solid #ddd;'>" . htmlspecialchars($data['value']) . "</td>";
+            echo "<td style='padding: 8px; border: 1px solid #ddd; white-space: pre-wrap;'>" . nl2br(htmlspecialchars($data['value'])) . "</td>";
             echo "</tr>";
             $rowColor = !$rowColor;
         }

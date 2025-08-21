@@ -30,6 +30,30 @@
         }
     }
 
+    function modificationAvis() {
+        if (!empty($_POST['titre']) && !empty($_POST['avis']) && isset($_SESSION['id']) && !empty($_POST['id'])) {
+
+            $id = intval($_POST['id']);
+            $titre = htmlspecialchars($_POST['titre']);
+            $avis = htmlspecialchars($_POST['avis']);
+
+            if (upDateAvisBDD($id, $titre, $avis)) {
+                $_SESSION['notification'] = [
+                    'message' => "Une erreur est survenue lors de la modification de l'avis.",
+                    'type' => 'success'
+                ];
+            } else {
+                $_SESSION['notification'] = [
+                    'message' => "Votre avis a été modifié avec succès.",
+                    'type' => 'error'
+                ];
+            }
+
+            header('location: index.php?action=accueil');
+            exit();
+        }
+    }
+
     function supprimerAvis() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['oui_avis'])) {
 

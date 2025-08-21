@@ -14,6 +14,12 @@
         $req_C_A->execute(['id' => $id, 'user_id' => $user_id, 'titre' => $titre, 'avis' => $avis]);
     }
 
+    // modification de l'avis
+    function upDateAvisBDD($id, $titre, $avis) {
+        $req_M_A = getBdd()->prepare('UPDATE avis SET titre = :titre, avis = :avis WHERE id = :id');
+        $req_M_A->execute(['id' => $id, 'titre' => $titre, 'avis' => $avis]);
+    }
+
     // suppression de l'avis
     function deleteAvis($id) {
         $bdd = getBdd();

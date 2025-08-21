@@ -7,6 +7,7 @@
     require_once 'Model/projet.php';
     require_once 'Model/avis.php';
     require_once 'fonctions/date.php';
+    // require_once 'View/tableauErr.php';
 
     // affichage des utilisateurs
     function getUsers() {

@@ -174,6 +174,27 @@
 		</div>
 	</div>
 </div>
+<!-- Modal modification avis -->
+<div class="modal fade" id="modif_avis_<?php echo $avis['id']; ?>" aria-hidden="true" aria-labelledby="modif_avis_Label_<?php echo $avis['id']; ?>" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modif_avis_Label_<?php echo $avis['id']; ?>">Modifier un avis</h1>
+                        <?php if (isset($_SESSION['prenom']) && (int) $_SESSION['id'] === (int) $avis['user_id']) { ?>
+                            <span class="text-black m-3">ID de l'avis : <?php echo $avis['id']; ?></span>
+                        <?php } else { ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <?php } ?>
+                    </div>
+                    <div class="modal-body">
+                        <?php 
+                        $id = $avis['id'];
+                        require 'View/modifAvis.php'; 
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
 <!-- Modal de suppression par avis (en dehors de menu_avis) -->
 <?php if (isset($req_A) && is_array($req_A)) { foreach ($req_A as $avis) { ?>
 <div class="modal fade" id="supp_avis_<?php echo $avis['id']; ?>" aria-hidden="true" aria-labelledby="supp_avis_Label_<?php echo $avis['id']; ?>" tabindex="-1">

@@ -41,7 +41,7 @@
                         <li class="nav-item"> 
                             <?php if (isset($_SESSION['prenom'])) { ?>
                                     <a href="index.php?action=getUsersDeconnexion" class="btn btn-danger m-3">Déconnexion</a>
-                                    <span class="text-white m-3">Ligne 49 (base.php) ID: <?= $_SESSION['prenom'] ?></span> <!-- Affichage de l'ID de l'utilisateur -->
+                                    <span class="text-white m-3">Ligne 44 (base.php) ID: <?= $_SESSION['prenom'] ?></span> <!-- Affichage de l'ID de l'utilisateur -->
                             <?php } else { ?>
                                 <button class="btn btn-success m-3" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Connectez-vous</button>
                             <?php } ?>
