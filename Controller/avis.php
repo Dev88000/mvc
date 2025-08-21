@@ -32,13 +32,10 @@
 
     function supprimerAvis() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['oui_avis'])) {
+
             $id = intval($_POST['oui_avis']);
-            // Débogage : afficher l'ID 
-            echo "ID à supprimer : " . $id;
-            // Tentative de suppression 
-            $result = deleteAvis($id);
             
-            if ($result) {
+            if (deleteAvis($id)) {
                 $_SESSION['notification'] = [
                     'message' => "L'élément a été supprimé avec succès.",
                     'type' => 'success'

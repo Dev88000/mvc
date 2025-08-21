@@ -72,7 +72,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Veuillez entrer vos
+                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Entrez vos
                                     informations de connexion</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
@@ -92,7 +92,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Veuillez entrer vos
+                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Entrez vos
                                     informations d'inscription</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
